@@ -1,0 +1,59 @@
+{
+  "result": "success",
+  "data": [
+    {
+      "id": 1,
+      "name": "Peter Parker",
+      "gender": "male",
+      "birthDate": "2000-01-01",
+      "address": [
+        {
+          "use": "home",
+          "line": [
+            "Queens"
+          ],
+          "city": "New York City",
+          "state": "New York",
+          "postalCode": "3999"
+        }
+      ],
+      "phones": [
+        {
+          "use": "home",
+          "value": "111-1111111"
+        },
+        {
+          "use": "work",
+          "value": "222-2222222"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Clark Kent",
+      "gender": "male",
+      "birthDate": "1980-12-31",
+      "address": [
+        {
+          "use": "home",
+          "line": [
+            "Street 1"
+          ],
+          "city": "Wichita",
+          "state": "Kansas",
+          "postalCode": "0000"
+        }
+      ],
+      "phones": [
+        {
+          "use": "home",
+          "value": "333-3333333"
+        },
+        {
+          "use": "work",
+          "value": "444-4444444"
+        }
+      ]
+    }
+  ]
+}
