@@ -1,0 +1,12 @@
+{
+  "first": {
+    "name": "$.data[0].name",
+    "phones": "$.data[0].phones[*].value",
+    "postalCodes": "$.data[0].address[*].postalCode"
+  },
+  "names": {
+    "#foreach($.data)": {
+      "name": "$.this.name"
+    }
+  }
+}

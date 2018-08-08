@@ -1,0 +1,39 @@
+# App generated files
+build
+bin/
+out/
+TODO
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE and Editors configs
+.vscode
+
+# Gradle
+.gradle
+gradle.properties
+
+# Maven
+target
+
+# IntelliJ IDEA
+.idea
+*.iws
+*.iml
+*.ipr
+
+# STS (Eclipse)
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+
