@@ -2,6 +2,7 @@
 build
 bin/
 out/
+classes/
 TODO
 
 # OS generated files
