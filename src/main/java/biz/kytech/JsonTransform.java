@@ -2,7 +2,6 @@ package biz.kytech;
 
 import com.jayway.jsonpath.JsonPath;
 import com.jayway.jsonpath.ReadContext;
-import com.oracle.javafx.jmx.json.JSONException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -21,9 +20,9 @@ public class JsonTransform {
      * @param json Original JSON
      * @param tmpl Template
      * @return Transformed JSON
-     * @throws JSONException
+     * @throws Exception
      */
-    public static String transform(String json, String tmpl) throws JSONException {
+    public static String transform(String json, String tmpl) throws Exception {
         ReadContext ctx = JsonPath.parse(json);
 
         tmpl = tmpl.trim();
@@ -42,7 +41,7 @@ public class JsonTransform {
         return "";
     }
 
-    private static JSONArray transform(ReadContext ctx, ReadContext thisCtx, JSONArray tmpl) throws JSONException {
+    private static JSONArray transform(ReadContext ctx, ReadContext thisCtx, JSONArray tmpl) throws Exception {
         JSONArray r = new JSONArray();
 
         for (int i = 0; i < tmpl.length(); i++) {
@@ -52,7 +51,7 @@ public class JsonTransform {
         return r;
     }
 
-    private static Object transform(ReadContext ctx, ReadContext thisCtx, JSONObject tmpl) throws JSONException {
+    private static Object transform(ReadContext ctx, ReadContext thisCtx, JSONObject tmpl) throws Exception {
 
         JSONObject r = new JSONObject();
 
@@ -79,7 +78,7 @@ public class JsonTransform {
         return r;
     }
 
-    private static Object jsonPathValue(ReadContext ctx, ReadContext thisCtx, Object oPath) throws JSONException {
+    private static Object jsonPathValue(ReadContext ctx, ReadContext thisCtx, Object oPath) throws Exception {
         if (oPath instanceof JSONObject) {
             return transform(ctx, thisCtx, (JSONObject) oPath);
 
