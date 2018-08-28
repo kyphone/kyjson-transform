@@ -16,6 +16,8 @@ public class Main {
             System.out.println(JsonTransform.transform(data, tmpl));
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
