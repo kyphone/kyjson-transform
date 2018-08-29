@@ -20,9 +20,8 @@ public class JsonTransform {
      * @param json Original JSON
      * @param tmpl Template
      * @return Transformed JSON
-     * @throws Exception
      */
-    public static String transform(String json, String tmpl) throws Exception {
+    public static String transform(String json, String tmpl) {
         ReadContext ctx = JsonPath.parse(json);
 
         tmpl = tmpl.trim();
@@ -41,7 +40,7 @@ public class JsonTransform {
         return "";
     }
 
-    private static JSONArray transform(ReadContext ctx, ReadContext thisCtx, JSONArray tmpl) throws Exception {
+    private static JSONArray transform(ReadContext ctx, ReadContext thisCtx, JSONArray tmpl) {
         JSONArray r = new JSONArray();
 
         for (int i = 0; i < tmpl.length(); i++) {
@@ -51,7 +50,7 @@ public class JsonTransform {
         return r;
     }
 
-    private static Object transform(ReadContext ctx, ReadContext thisCtx, JSONObject tmpl) throws Exception {
+    private static Object transform(ReadContext ctx, ReadContext thisCtx, JSONObject tmpl) {
 
         JSONObject r = new JSONObject();
 
@@ -62,7 +61,7 @@ public class JsonTransform {
 
             if (k.startsWith("#foreach(")) {
                 String path = k.substring(9, k.length() - 1);
-                List<Object> objects = (List<Object>) jsonPathValue(ctx, thisCtx, path);
+                List<?> objects = (List<?>) jsonPathValue(ctx, thisCtx, path);
                 JSONArray r2 = new JSONArray();
                 for (Object object : objects) {
                     ReadContext ctx2 = JsonPath.parse(object);
@@ -78,7 +77,7 @@ public class JsonTransform {
         return r;
     }
 
-    private static Object jsonPathValue(ReadContext ctx, ReadContext thisCtx, Object oPath) throws Exception {
+    private static Object jsonPathValue(ReadContext ctx, ReadContext thisCtx, Object oPath) {
         if (oPath instanceof JSONObject) {
             return transform(ctx, thisCtx, (JSONObject) oPath);
 
@@ -103,17 +102,13 @@ public class JsonTransform {
             if (v instanceof List) {
                 List array = (List) v;
                 List<Object> values = new ArrayList<>();
-                for (int i = 0; i < array.size(); i++) {
-                    values.add(jsonPathValue(ctx, thisCtx, array.get(i)));
+                for (Object item : array) {
+                    values.add(jsonPathValue(ctx, thisCtx, item));
                 }
                 return values;
 
-            } else if (v instanceof String) {
-                return (String) v;
-            } else if (v instanceof Integer) {
-                return (Integer) v;
-            } else if (v instanceof Double) {
-                return (Double) v;
+            } else if (v instanceof String || v instanceof Integer || v instanceof Double) {
+                return v;
             }
 
         } else if (oPath instanceof String && ((String) oPath).startsWith("#str(")) {

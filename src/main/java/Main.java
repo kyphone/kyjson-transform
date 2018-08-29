@@ -16,16 +16,18 @@ public class Main {
             System.out.println(JsonTransform.transform(data, tmpl));
         } catch (IOException e) {
             e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
     private static String loadFile(String filePath) throws IOException {
         File file = new File(filePath);
         BufferedReader reader = new BufferedReader(new FileReader(file));
-        String data = "", line;
-        while ((line = reader.readLine()) != null) data += line + "\n";
-        return data;
+        StringBuilder builder = new StringBuilder();
+        String line;
+        while ((line = reader.readLine()) != null) {
+            builder.append(line);
+            builder.append("\n");
+        }
+        return builder.toString();
     }
 }
