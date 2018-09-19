@@ -2,6 +2,6 @@
 JSON transformation library written in Java
 
 # Get Started
-This library is publish in JitPack (package repository).
+This library is published in JitPack (package repository).
 
 https://jitpack.io/#kytech-biz/kyjson-transform
